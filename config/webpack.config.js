@@ -337,33 +337,33 @@ module.exports = function(webpackEnv) {
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
 
-        // // First, run the linter.
-        // // It's important to do this before Babel processes the JS.
-        // {
-        //   test: /\.(js|mjs|jsx|ts|tsx)$/,
-        //   enforce: 'pre',
-        //   use: [
-        //     {
-        //       options: {
-        //         cache: true,
-        //         formatter: require.resolve('react-dev-utils/eslintFormatter'),
-        //         eslintPath: require.resolve('eslint'),
-        //         resolvePluginsRelativeTo: __dirname,
-        //         // @remove-on-eject-begin
-        //         ignore: isExtendingEslintConfig,
-        //         baseConfig: isExtendingEslintConfig
-        //           ? undefined
-        //           : {
-        //               extends: [require.resolve('eslint-config-react-app')],
-        //             },
-        //         useEslintrc: isExtendingEslintConfig,
-        //         // @remove-on-eject-end
-        //       },
-        //       loader: require.resolve('eslint-loader'),
-        //     },
-        //   ],
-        //   include: paths.appSrc,
-        // },
+        // First, run the linter.
+        // It's important to do this before Babel processes the JS.
+        {
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          enforce: 'pre',
+          use: [
+            {
+              options: {
+                cache: true,
+                formatter: require.resolve('react-dev-utils/eslintFormatter'),
+                eslintPath: require.resolve('eslint'),
+                resolvePluginsRelativeTo: __dirname,
+                // @remove-on-eject-begin
+                ignore: isExtendingEslintConfig,
+                baseConfig: isExtendingEslintConfig
+                  ? undefined
+                  : {
+                      extends: [require.resolve('eslint-config-react-app')],
+                    },
+                useEslintrc: isExtendingEslintConfig,
+                // @remove-on-eject-end
+              },
+              loader: require.resolve('eslint-loader'),
+            },
+          ],
+          include: paths.appSrc,
+        },
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
